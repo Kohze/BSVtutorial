@@ -1,0 +1,47 @@
+<html>
+<head>
+<script src="https://www.moneybutton.com/moneybutton.js"></script>
+<script type="text/javascript" src="https://unpkg.com/bsv@0.21.5/bsv.min.js"></script>
+
+
+<style>
+body {
+  padding: 50px;
+  font-family: arial;
+  font-size: 12px;
+}
+div {
+  width: 500px;
+  margin: 0 auto;
+  padding: 10px 0;
+}
+</style>
+<script>
+
+inp = ['bitjournal', 'Eve Adams', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum', 'How Bitcoin SV took over the crypto space while nobody noticed', 'The abstract']
+
+let hex = 'OP_RETURN';
+for(i in inp){
+  hex += ' '  + bsv.Script.buildDataOut(inp[i]).toASM().split(" ")[1];
+}
+
+</script>
+</head>
+<body>
+
+  <div id="my-money-button"></div>
+
+></div>
+</body>
+<script>
+  const div = document.getElementById('my-money-button')
+  moneyButton.render(div, {
+    outputs: [{
+      type: 'SCRIPT',
+      script: hex,
+      amount: '0.05',
+      currency: 'USD'
+    }]
+  })
+</script>
+</html>
